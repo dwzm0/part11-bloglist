@@ -1,0 +1,49 @@
+name: Deployment pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main] 
+    types: [opened, synchronize] 
+    
+jobs:
+  simple_deployment_pipeline:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies in front
+        run: npm install
+        working-directory: frontend
+        
+      - name: Install dependencies in core
+        run: npm install
+        
+      - name: Lint frontend 
+        run: npm run eslint
+        working-directory: frontend
+        
+      - name: Lint core 
+        run: npm run eslint
+        
+      - name: Run Tests
+        run: npm test
+      
+      - name: Install root dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Start server in the background
+        run: npm run start:test &
+
+      - name: Install Cypress and run tests
+        uses: cypress-io/github-action@v5
+        with:
+          build: npm run build
+          start: npm run start
+          working-directory: frontend
+      
+          
