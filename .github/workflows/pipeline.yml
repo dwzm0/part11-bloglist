@@ -32,6 +32,10 @@ jobs:
         
       - name: Run Tests
         run: npm test
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI}}
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI}}
+          PORT: ${{ secrets.PORT }}
       
       - name: Install root dependencies
         uses: bahmutov/npm-install@v1
@@ -45,5 +49,9 @@ jobs:
           build: npm run build
           start: npm run start
           working-directory: frontend
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI}}
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI}}
+          PORT: ${{ secrets.PORT }}
       
           
