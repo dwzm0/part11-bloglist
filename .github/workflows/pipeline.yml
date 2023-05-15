@@ -24,11 +24,11 @@ jobs:
         run: npm install
         
       - name: Lint frontend 
-        run: npm run eslint
+        run: npm run lint
         working-directory: frontend
         
       - name: Lint core 
-        run: npm run eslint
+        run: npm run lint
         
       - name: Run Tests
         run: npm test
