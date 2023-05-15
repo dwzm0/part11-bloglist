@@ -1,12 +1,14 @@
-const { signToken } = require("../utils/tokenGen");
-const Blog = require("../models/blog");
-const User = require("../models/user");
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-return-await */
+const { signToken } = require("../utils/tokenGen")
+const Blog = require("../models/blog")
+const User = require("../models/user")
 
 const testBlog = {
   author: "test author",
   title: "test title",
   url: "https://test.com/test",
-};
+}
 
 const initialBlogs = [
   {
@@ -45,35 +47,34 @@ const initialBlogs = [
     url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
     likes: 2,
   },
-];
+]
 
 const authorizationHeader = (user) => ({
   Authorization: `Bearer ${signToken(user)}`,
-});
+})
 
-const blogsInDb = async () =>
-  (await Blog.find({})).map((blog) => blog.toJSON());
+const blogsInDb = async () => (await Blog.find({})).map((blog) => blog.toJSON())
 
 const nonExistingId = async () => {
-  const blog = new Blog(testBlog);
-  await blog.save();
-  await blog.remove();
-  return blog._id.toString();
-};
+  const blog = new Blog(testBlog)
+  await blog.save()
+  await blog.remove()
+  return blog._id.toString()
+}
 
 const initUsers = async () => {
-  await User.deleteMany({});
+  await User.deleteMany({})
   return await User.create({
     username: "test",
     name: "Test",
     passwordHash: "*******",
-  });
-};
+  })
+}
 
 const usersInDb = async () => {
-  const users = await User.find({});
-  return users.map((u) => u.toJSON());
-};
+  const users = await User.find({})
+  return users.map((u) => u.toJSON())
+}
 
 module.exports = {
   authorizationHeader,
@@ -83,4 +84,4 @@ module.exports = {
   initUsers,
   nonExistingId,
   usersInDb,
-};
+}

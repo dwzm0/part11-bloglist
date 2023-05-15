@@ -1,4 +1,5 @@
-const listHelper = require("../utils/list_helper");
+/* eslint-disable no-shadow */
+const listHelper = require("../utils/list_helper")
 
 const blogs = [
   {
@@ -49,14 +50,14 @@ const blogs = [
     likes: 2,
     __v: 0,
   },
-];
+]
 
 test("dummy returns one", () => {
-  const blogs = [];
+  const blogs = []
 
-  const result = listHelper.dummy(blogs);
-  expect(result).toBe(1);
-});
+  const result = listHelper.dummy(blogs)
+  expect(result).toBe(1)
+})
 
 describe("total likes", () => {
   const listWithOneBlog = [
@@ -108,13 +109,13 @@ describe("total likes", () => {
       likes: 2,
       __v: 0,
     },
-  ];
+  ]
 
   test("big list", () => {
-    const result = listHelper.totalLikes(listWithOneBlog);
-    expect(result).toBe(36);
-  });
-});
+    const result = listHelper.totalLikes(listWithOneBlog)
+    expect(result).toBe(36)
+  })
+})
 
 describe("total likes", () => {
   const listWithOneBlog = [
@@ -126,22 +127,22 @@ describe("total likes", () => {
       likes: 7,
       __v: 0,
     },
-  ];
+  ]
 
   test("one entry", () => {
-    const result = listHelper.totalLikes(listWithOneBlog);
-    expect(result).toBe(7);
-  });
-});
+    const result = listHelper.totalLikes(listWithOneBlog)
+    expect(result).toBe(7)
+  })
+})
 
 describe("total likes", () => {
-  const listWithOneBlog = [];
+  const listWithOneBlog = []
 
   test("one entry", () => {
-    const result = listHelper.totalLikes(listWithOneBlog);
-    expect(result).toBe(0);
-  });
-});
+    const result = listHelper.totalLikes(listWithOneBlog)
+    expect(result).toBe(0)
+  })
+})
 
 describe("favourite entry", () => {
   const listWithOneBlog = [
@@ -193,10 +194,10 @@ describe("favourite entry", () => {
       likes: 2,
       __v: 0,
     },
-  ];
+  ]
 
   test("big list", () => {
-    const result = listHelper.favoriteBlog(listWithOneBlog);
+    const result = listHelper.favoriteBlog(listWithOneBlog)
     expect(result).toEqual({
       _id: "5a422b3a1b54a676234d17f9",
       title: "Canonical string reduction",
@@ -204,27 +205,27 @@ describe("favourite entry", () => {
       url: "http://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD808.html",
       likes: 12,
       __v: 0,
-    });
-  });
-});
+    })
+  })
+})
 
 describe("most blogs", () => {
   test("big list", () => {
-    const result = listHelper.mostBlogs(blogs);
+    const result = listHelper.mostBlogs(blogs)
     expect(result).toEqual({
       author: "Robert C. Martin",
       blogs: 3,
-    });
-  });
-});
+    })
+  })
+})
 
 describe("most likes", () => {
   test("of a bigger list is the author with the most likes", () => {
-    const result = listHelper.mostLikes(blogs);
+    const result = listHelper.mostLikes(blogs)
 
     expect(result).toMatchObject({
       author: "Edsger W. Dijkstra",
       likes: 17,
-    });
-  });
-});
+    })
+  })
+})

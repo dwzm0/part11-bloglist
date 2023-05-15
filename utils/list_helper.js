@@ -1,41 +1,28 @@
-const _ = require("lodash");
+/* eslint-disable no-return-assign */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-param-reassign */
+const _ = require("lodash")
 
-const dummy = (blogs) => {
-  return 1;
-};
+const dummy = (blogs) => 1
 
-const totalLikes = (blogs) => {
-  return blogs.reduce((acc, curr, i) => acc + curr.likes, 0);
-};
+const totalLikes = (blogs) => blogs.reduce((acc, curr, i) => acc + curr.likes, 0)
 
-const favoriteBlog = (blogs) => {
-  return blogs.sort((a, b) => b.likes - a.likes)[0];
-};
+const favoriteBlog = (blogs) => blogs.sort((a, b) => b.likes - a.likes)[0]
 
-const mostBlogs = (blogs) => {
-  return _.chain(blogs)
-    .groupBy("author")
-    .map((group, author) => {
-      return { author: author, blogs: group.length };
-    })
-    .maxBy((object) => object.blogs)
-    .value();
-};
+const mostBlogs = (blogs) => _.chain(blogs)
+  .groupBy("author")
+  .map((group, author) => ({ author, blogs: group.length }))
+  .maxBy((object) => object.blogs)
+  .value()
 
-const mostLikes = (blogs) => {
-  return _.chain(blogs)
-    .groupBy("author")
-    .map((group, author) => {
-      return {
-        author: author,
-        likes: group.reduce((acc, next) => {
-          return (acc += next.likes);
-        }, 0),
-      };
-    })
-    .maxBy((obj) => obj.likes)
-    .value();
-};
+const mostLikes = (blogs) => _.chain(blogs)
+  .groupBy("author")
+  .map((group, author) => ({
+    author,
+    likes: group.reduce((acc, next) => (acc += next.likes), 0),
+  }))
+  .maxBy((obj) => obj.likes)
+  .value()
 
 module.exports = {
   dummy,
@@ -43,4 +30,4 @@ module.exports = {
   favoriteBlog,
   mostBlogs,
   mostLikes,
-};
+}

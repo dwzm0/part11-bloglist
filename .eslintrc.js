@@ -6,7 +6,7 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: ["airbnb-base", "plugin:prettier/recommended"],
+  extends: ["airbnb-base", "plugin:cypress/recommended"],
   overrides: [],
   parserOptions: {
     ecmaVersion: "latest",
@@ -21,5 +21,7 @@ module.exports = {
     "object-curly-spacing": ["error", "always"],
     "arrow-spacing": ["error", { before: true, after: true }],
     "no-console": 0,
+    "global-require": 0,
+    "consistent-return": "off",
   },
-};
+}

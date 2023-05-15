@@ -1,3 +1,6 @@
+/* eslint-disable testing-library/no-container */
+/* eslint-disable jest/no-identical-title */
+/* eslint-disable testing-library/no-node-access */
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
