@@ -29,7 +29,15 @@ jobs:
         
       - name: Lint core 
         run: npm run lint
-          
+        
+      - name: Run Tests
+        run: npm test
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI}}
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI}}
+          PORT: ${{ secrets.PORT }}
+          SECRET: ${{ secrets.SECRET }} 
+      
       - name: Install root dependencies
         uses: bahmutov/npm-install@v1
 
