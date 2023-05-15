@@ -37,6 +37,7 @@ jobs:
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI}}
           PORT: ${{ secrets.PORT }}
           SECRET: ${{ secrets.SECRET }}
+        
       - name: Install root dependencies
         uses: bahmutov/npm-install@v1
 
