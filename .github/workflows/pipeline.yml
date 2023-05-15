@@ -47,6 +47,7 @@ jobs:
           build: npm run build
           start: npm start
           working-directory: frontend
+          wait-on: 'http://localhost:3000'
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI}}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI}}
