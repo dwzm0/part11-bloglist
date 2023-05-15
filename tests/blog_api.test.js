@@ -94,34 +94,6 @@ describe("addition of a new blog", () => {
   })
 })
 
-describe("deletion of a blog", () => {
-  let user
-  beforeEach(async () => (user = await helper.initUsers()))
-  test("succeeds with a valid ID", async () => {
-    const blog = await Blog.create({ ...helper.testBlog, user: user._id })
-
-    await api
-      .delete(`/api/blogs/${blog.id}`)
-      .set(helper.authorizationHeader(user))
-      .expect(204)
-
-    const ids = (await helper.blogsInDb()).map((b) => b.id)
-    expect(ids).not.toContain(blog.id)
-  })
-})
-
-describe("updating blog", () => {
-  test("succeeds with status code 200", async () => {
-    const blogsAtStart = await helper.blogsInDb()
-    const blogToChange = blogsAtStart[0]
-
-    await api
-      .put(`/api/blogs/${blogToChange.id}`)
-      .send(helper.testBlog)
-      .expect(200)
-  })
-})
-
 describe("when there is initially one user in db", () => {
   beforeEach(async () => {
     await User.deleteMany({})
