@@ -42,6 +42,11 @@ jobs:
 
       - name: Start server in the background
         run: npm run start:test &
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI}}
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI}}
+          PORT: ${{ secrets.PORT }}
+          SECRET: ${{ secrets.SECRET }}
 
       - name: Install Cypress and run tests
         uses: cypress-io/github-action@v5
