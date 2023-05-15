@@ -2,5 +2,5 @@
 
 echo "Start script"
 
-npm start
+npm full-start
 
