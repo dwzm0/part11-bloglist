@@ -56,6 +56,36 @@ jobs:
           start: npm start
           working-directory: frontend
           wait-on: 'http://localhost:3000'
-        
+      - name: Trigger deployment
+        if: github.event_name == 'push' && !contains(toJson(join(github.event.commits.*.message)), '#skip') 
+        run: curl ${{ secrets.DEPLOY_URL }}
+      - name: Deploy success
+        uses: rjstone/discord-webhook-notify@v1
+        if: success()
+        with:
+            severity: info
+            details: Deploy has succeded ! 
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Build failed
+        uses: rjstone/discord-webhook-notify@v1
+        if: failure()
+        with:
+            severity: error
+            details: BUILD FAILED!
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}      
+  tag_release:
+      needs: [simple_deployment_pipeline]
+      runs-on: ubuntu-20.04
+      steps:
+       - uses: actions/checkout@v3
+         with:
+          fetch-depth: '0'
+       - name: Bump version and push tag
+         if: github.event_name == 'push' && !contains(toJson(join(github.event.commits.*.message)), '#skip')  
+         uses: anothrNick/github-tag-action@1.64.0 
+         env: 
+            GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+            DEFAULT_BUMP: patch
+             
       
           
