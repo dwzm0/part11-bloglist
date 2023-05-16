@@ -8,8 +8,7 @@
     "dev": "NODE_ENV=development nodemon index.js",
     "test": "NODE_ENV=test jest --verbose --runInBand",
     "start:test": "NODE_ENV=test node index.js",
-    "lint": "eslint .",
-    "full-start": "concurrently \"npm start --prefix ./frontend\" \"npm start\""
+    "lint": "eslint ."
   },
   "author": "dwzm",
   "license": "ISC",
@@ -25,7 +24,6 @@
     "mongoose-unique-validator": "^3.1.0"
   },
   "devDependencies": {
-    "concurrently": "^8.0.1",
     "eslint": "^8.36.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.8.0",
