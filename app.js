@@ -43,6 +43,10 @@ app.get("/health", (req, res) => {
   res.send("ok")
 })
 
+app.get("/f0rr3vi3w", (req, res) => {
+  res.send("xDxDxD:D:D:D:D^_^_^_^_^_^")
+})
+
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
